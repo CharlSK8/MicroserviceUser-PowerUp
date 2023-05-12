@@ -8,11 +8,11 @@ public class Person {
     private String phone;
     private String address;
     private String idDniType;
-    private String dniNumber;
+    private Long dniNumber;
     private String idPersonType;
     private String password;
 
-    public Person(Long id, String name, String surname, String mail, String phone, String address, String idDniType, String dniNumber, String idPersonType, String password) {
+    public Person(Long id, String name, String surname, String mail, String phone, String address, String idDniType, Long dniNumber, String idPersonType, String password) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -81,11 +81,11 @@ public class Person {
         this.idDniType = idDniType;
     }
 
-    public String getDniNumber() {
+    public Long getDniNumber() {
         return dniNumber;
     }
 
-    public void setDniNumber(String dniNumber) {
+    public void setDniNumber(Long dniNumber) {
         this.dniNumber = dniNumber;
     }
 

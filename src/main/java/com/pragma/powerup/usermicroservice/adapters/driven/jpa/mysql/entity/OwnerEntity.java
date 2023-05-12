@@ -1,30 +1,38 @@
 package com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
-@Table(name = "person")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class PersonEntity {
+@Table(name = "owner")
+public class OwnerEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String surname;
-    private String mail;
-    private String phone;
-    private String address;
-    private String idDniType;
     @Column(unique = true, nullable = false, length = 20)
-    private String dniNumber;
-    private String idPersonType;
+    private Long dniNumber;
+    private String phone;
+    private LocalDate birthOfDate;
+    private String mail;
     private String password;
-    private String tokenPassword;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private RoleEntity roleEntity;
+
 }

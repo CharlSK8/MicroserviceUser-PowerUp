@@ -16,7 +16,7 @@ public class PersonMysqlAdapter implements IPersonPersistencePort {
     private final PasswordEncoder passwordEncoder;
     @Override
     public void savePerson(Person person) {
-        if (personRepository.findByDniNumber(person.getDniNumber()).isPresent()) {
+        if (personRepository.findByDniNumber(person.getDniNumber().toString()).isPresent()) {
             throw new PersonAlreadyExistsException();
         }
         if (personRepository.existsByMail(person.getMail())){

@@ -8,7 +8,7 @@ spring:
     password: Charlinson_69
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 jwt:
   secret: ${KEYSECRET_SECURITY:eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.nZU_gPcMXkWpkCUpJceSxS7lSickF0tTImHhAR949Z-Nt69LgW8G6lid-mqd9B579tYM8C4FN2jdhR2VRMsjtA}
   expiration: ${EXPIRE_DAYS_SECURITY:3600000}
@@ -18,3 +18,4 @@ management:
     web:
       exposure:
         include: "*"
+minimumAge: 18

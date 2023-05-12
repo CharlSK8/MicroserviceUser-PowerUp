@@ -28,4 +28,9 @@ public class UserEntity {
     @ManyToOne
     @JoinColumn(name = "id_role")
     private RoleEntity roleEntity;
+
+    public UserEntity(PersonEntity personEntity, RoleEntity roleEntity) {
+        this.personEntity = personEntity;
+        this.roleEntity = roleEntity;
+    }
 }
