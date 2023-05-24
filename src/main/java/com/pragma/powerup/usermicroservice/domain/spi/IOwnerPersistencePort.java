@@ -5,4 +5,6 @@ import com.pragma.powerup.usermicroservice.domain.model.Owner;
 public interface IOwnerPersistencePort {
 
     void saveOwner(Owner owner);
+
+    Owner getOwner(Long id);
 }

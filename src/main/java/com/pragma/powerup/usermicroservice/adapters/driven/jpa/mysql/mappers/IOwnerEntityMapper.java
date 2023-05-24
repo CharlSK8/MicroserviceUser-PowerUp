@@ -6,10 +6,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
+import java.util.Optional;
+
 @Mapper(componentModel = "spring",
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface IOwnerEntityMapper {
     @Mapping(target = "roleEntity.id", source = "role.id")
     OwnerEntity toEntity(Owner owner);
+    @Mapping(target = "role.id", source = "roleEntity.id")
+    Owner toOwner(OwnerEntity ownerEntity);
 }

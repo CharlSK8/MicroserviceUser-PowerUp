@@ -30,4 +30,9 @@ public class OwnerUseCase implements IOwnerServicePort {
             }
             ownerPersistencePort.saveOwner(owner);
         }
+
+    @Override
+    public Owner getOwner(Long id) {
+        return ownerPersistencePort.getOwner(id);
+    }
 }

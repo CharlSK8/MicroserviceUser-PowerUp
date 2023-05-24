@@ -1,5 +1,6 @@
 package com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.adapter;
 
+import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.OwnerEntity;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.OwnerAlreadyExistsException;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.mappers.IOwnerEntityMapper;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IOwnerRepository;
@@ -7,6 +8,8 @@ import com.pragma.powerup.usermicroservice.domain.model.Owner;
 import com.pragma.powerup.usermicroservice.domain.spi.IOwnerPersistencePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class OwnerMysqlAdapter implements IOwnerPersistencePort {
@@ -21,5 +24,11 @@ public class OwnerMysqlAdapter implements IOwnerPersistencePort {
         }
         owner.setPassword(passwordEncoder.encode(owner.getPassword()));
         ownerRepository.save(ownerEntityMapper.toEntity(owner));
+    }
+
+    @Override
+    public Owner getOwner(Long id) {
+        Optional<OwnerEntity> ownerEntity = ownerRepository.findById(id);
+        return ownerEntityMapper.toOwner(ownerEntity.get());
     }
 }
