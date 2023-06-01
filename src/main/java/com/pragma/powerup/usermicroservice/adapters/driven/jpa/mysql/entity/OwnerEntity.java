@@ -29,6 +29,7 @@ public class OwnerEntity {
     private Long dniNumber;
     private String phone;
     private LocalDate birthOfDate;
+    @Column(unique = true, nullable = false)
     private String mail;
     private String password;
     @ManyToOne

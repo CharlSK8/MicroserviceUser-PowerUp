@@ -1,13 +1,17 @@
 package com.pragma.powerup.usermicroservice.domain.usecase;
 
+import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.OwnerEntity;
 import com.pragma.powerup.usermicroservice.domain.api.IOwnerServicePort;
 import com.pragma.powerup.usermicroservice.domain.exceptions.MinorException;
 import com.pragma.powerup.usermicroservice.domain.model.Owner;
 import com.pragma.powerup.usermicroservice.domain.spi.IOwnerPersistencePort;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Optional;
 
 
 public class OwnerUseCase implements IOwnerServicePort {
@@ -16,6 +20,8 @@ public class OwnerUseCase implements IOwnerServicePort {
     private int minimumAge;
 
     private final IOwnerPersistencePort ownerPersistencePort;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public OwnerUseCase(IOwnerPersistencePort ownerPersistencePort){
         this.ownerPersistencePort = ownerPersistencePort;
@@ -34,5 +40,15 @@ public class OwnerUseCase implements IOwnerServicePort {
     @Override
     public Owner getOwner(Long id) {
         return ownerPersistencePort.getOwner(id);
+    }
+
+    @Override
+    public Optional<OwnerEntity> findByMail(String mail) {
+        return ownerPersistencePort.findByMail(mail);
+    }
+
+    @Override
+    public boolean comparePasswords(CharSequence passwordDto, String passwordEntity) {
+        return passwordEncoder.matches(passwordDto, passwordEntity);
     }
 }

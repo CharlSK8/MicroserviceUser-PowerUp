@@ -4,6 +4,7 @@ import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.Own
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.OwnerResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IOwnerHandler;
 import com.pragma.powerup.usermicroservice.configuration.Constants;
+import com.pragma.powerup.usermicroservice.adapters.driving.http.utils.RequiresRole;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -31,6 +32,7 @@ public class OwnerRestController {
                     @ApiResponse(responseCode = "409", description = "Owner already exists",
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
     @PostMapping("/save")
+    @RequiresRole("ROLE_ADMIN")
     public ResponseEntity<Map<String, String>> saveOwner(@Valid @RequestBody OwnerRequestDto ownerRequestDto) {
         ownerHandler.saveOwner(ownerRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED)

@@ -17,6 +17,7 @@ public class Constants {
     public static final String OWNER_CREATED_MESSAGE = "Owner created successfully";
     public static final String USER_DELETED_MESSAGE = "User deleted successfully";
     public static final String RESPONSE_ERROR_MESSAGE_KEY = "error: ";
+    public static final String RESPONSE_WARNING_MESSAGE_KEY = "warning: ";
     public static final String WRONG_CREDENTIALS_MESSAGE = "Wrong credentials";
     public static final String NO_DATA_FOUND_MESSAGE = "No data found for the requested petition";
     public static final String PERSON_ALREADY_EXISTS_MESSAGE = "A person already exists with the DNI number provided";
@@ -40,4 +41,7 @@ public class Constants {
     public static final String EMAIL_VALIDATION = "Must be a properly formatted email address";
     public static final String DNI_ERROR = "The field must be numeric only";
     public static final String PHONE_VALIDATION = "The field must contain numbers or the symbol '+'";
+    public static final String EMAIL_NOT_FOUND_MESSAGE = "Email not found in the database";
+    public static final String PASSWORD_NOT_FOUND_MESSAGE = "Password not found in the database";
+    public static final String ROLE_INVALID_MESSAGE = "Access denied, invalid role for this endpoint";
 }

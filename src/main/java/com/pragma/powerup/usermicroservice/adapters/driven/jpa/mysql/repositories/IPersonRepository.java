@@ -2,12 +2,14 @@ package com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositori
 
 import com.fasterxml.jackson.databind.introspect.AnnotationCollector;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.PersonEntity;
+import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
 public interface IPersonRepository extends JpaRepository<PersonEntity, Long> {
     Optional<PersonEntity> findByDniNumber(String dniNumber);
+    Optional<PersonEntity> findByMail(String mail);
 
     Boolean existsByDniNumber(String dniNumber);
 

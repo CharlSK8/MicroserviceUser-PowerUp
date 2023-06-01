@@ -1,6 +1,9 @@
 package com.pragma.powerup.usermicroservice.configuration;
 
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.*;
+import com.pragma.powerup.usermicroservice.adapters.driving.http.exceptions.InvalidRoleException;
+import com.pragma.powerup.usermicroservice.adapters.driving.http.exceptions.MailNotFoundException;
+import com.pragma.powerup.usermicroservice.adapters.driving.http.exceptions.PasswordNotFoundException;
 import com.pragma.powerup.usermicroservice.domain.exceptions.MinorException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -103,5 +106,26 @@ public class ControllerAdvisor {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, OWNER_MINOR_MESSAGE));
     }
+    @ExceptionHandler(MailNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleMailNotFoundException(
+            MailNotFoundException mailNotFoundException) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, EMAIL_NOT_FOUND_MESSAGE));
+    }
+
+    @ExceptionHandler(PasswordNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handlePasswordNotFoundException(
+            PasswordNotFoundException passwordNotFoundException) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, PASSWORD_NOT_FOUND_MESSAGE));
+    }
+    @ExceptionHandler(InvalidRoleException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidRoleException(
+            InvalidRoleException invalidRoleException) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(Collections.singletonMap(RESPONSE_WARNING_MESSAGE_KEY, ROLE_INVALID_MESSAGE));
+    }
+
+
 
 }

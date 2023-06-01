@@ -1,6 +1,7 @@
 package com.pragma.powerup.usermicroservice.adapters.driving.http.controller;
 
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.LoginRequestDto;
+import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.LoginSquareRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.JwtResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IAuthHandler;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -32,4 +33,10 @@ public class AuthController {
     public ResponseEntity<JwtResponseDto> refresh(@RequestBody JwtResponseDto jwtResponseDto) throws ParseException {
         return new ResponseEntity<>(authHandler.refresh(jwtResponseDto), HttpStatus.OK);
     }
+
+    @PostMapping("/login/square")
+    public ResponseEntity<JwtResponseDto> loginSquare(@Valid @RequestBody LoginSquareRequestDto loginSquareRequestDto) {
+        return new ResponseEntity<>(authHandler.loginSquare(loginSquareRequestDto), HttpStatus.OK);
+    }
+
 }

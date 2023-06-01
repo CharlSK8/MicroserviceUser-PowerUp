@@ -11,20 +11,20 @@ import java.util.stream.Collectors;
 public class PrincipalUser implements UserDetails {
     private String nombre;
     private String nombreUsuario;
-    private String email;
+    private String mail;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public PrincipalUser(String nombre, String nombreUsuario, String email, String password,
+    public PrincipalUser(String nombre, String nombreUsuario, String mail, String password,
                          Collection<? extends GrantedAuthority> authorities) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
-        this.email = email;
+        this.mail = mail;
         this.password = password;
         this.authorities = authorities;
     }
 
-    public static PrincipalUser build(PersonEntity usuario, List<RoleEntity> roles) {
+    public static PrincipalUser build(OwnerEntity usuario, List<RoleEntity> roles) {
         List<GrantedAuthority> authorities = roles.stream()
                 .map(rol -> new SimpleGrantedAuthority(rol.getName())).collect(Collectors.toList());
         return new PrincipalUser(usuario.getName(), usuario.getDniNumber().toString(), usuario.getMail(),
@@ -70,7 +70,7 @@ public class PrincipalUser implements UserDetails {
         return nombre;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMail() {
+        return mail;
     }
 }
