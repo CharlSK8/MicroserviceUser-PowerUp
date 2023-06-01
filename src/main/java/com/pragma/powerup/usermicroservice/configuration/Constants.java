@@ -15,6 +15,7 @@ public class Constants {
     public static final String PERSON_CREATED_MESSAGE = "Person created successfully";
     public static final String USER_CREATED_MESSAGE = "User created successfully";
     public static final String OWNER_CREATED_MESSAGE = "Owner created successfully";
+    public static final String EMPLOYEE_CREATED_MESSAGE = "Employee created successfully";
     public static final String USER_DELETED_MESSAGE = "User deleted successfully";
     public static final String RESPONSE_ERROR_MESSAGE_KEY = "error: ";
     public static final String RESPONSE_WARNING_MESSAGE_KEY = "warning: ";
@@ -44,4 +45,5 @@ public class Constants {
     public static final String EMAIL_NOT_FOUND_MESSAGE = "Email not found in the database";
     public static final String PASSWORD_NOT_FOUND_MESSAGE = "Password not found in the database";
     public static final String ROLE_INVALID_MESSAGE = "Access denied, invalid role for this endpoint";
+    public static final String DNI_ALREADY_EXISTS_MESSAGE = "A person already exists with the DNI number provided";
 }

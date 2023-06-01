@@ -96,7 +96,7 @@ public class ControllerAdvisor {
     @ExceptionHandler(OwnerAlreadyExistsException.class)
     public ResponseEntity<Map<String, String>> handleOwnerAlreadyExistsException(
             OwnerAlreadyExistsException ownerAlreadyExistsException) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, OWNER_ALREADY_EXISTS_MESSAGE));
     }
 
@@ -125,7 +125,10 @@ public class ControllerAdvisor {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(Collections.singletonMap(RESPONSE_WARNING_MESSAGE_KEY, ROLE_INVALID_MESSAGE));
     }
-
-
-
+    @ExceptionHandler(DniAlreadyExistsException.class)
+    public ResponseEntity<Map<String, String>> handleDniAlreadyExistsException(
+            DniAlreadyExistsException dniAlreadyExistsException) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Collections.singletonMap(RESPONSE_WARNING_MESSAGE_KEY, DNI_ALREADY_EXISTS_MESSAGE));
+    }
 }

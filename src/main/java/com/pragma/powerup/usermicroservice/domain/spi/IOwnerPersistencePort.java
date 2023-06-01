@@ -8,7 +8,8 @@ import java.util.Optional;
 public interface IOwnerPersistencePort {
 
     void saveOwner(Owner owner);
-
+    void saveEmployee(Owner owner);
     Owner getOwner(Long id);
     Optional<OwnerEntity> findByMail(String mail);
+
 }

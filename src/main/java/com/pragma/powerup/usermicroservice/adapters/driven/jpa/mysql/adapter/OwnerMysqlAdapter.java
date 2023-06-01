@@ -1,10 +1,12 @@
 package com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.adapter;
 
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.OwnerEntity;
+import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.DniAlreadyExistsException;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.MailAlreadyExistsException;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.OwnerAlreadyExistsException;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.mappers.IOwnerEntityMapper;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IOwnerRepository;
+import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.EmployeeRequestDto;
 import com.pragma.powerup.usermicroservice.domain.model.Owner;
 import com.pragma.powerup.usermicroservice.domain.spi.IOwnerPersistencePort;
 import lombok.RequiredArgsConstructor;
@@ -31,8 +33,24 @@ public class OwnerMysqlAdapter implements IOwnerPersistencePort {
     }
 
     @Override
+    public void saveEmployee(Owner owner) {
+        if(ownerRepository.findByDniNumber(owner.getDniNumber().toString()).isPresent()){
+            throw new DniAlreadyExistsException();
+        }
+        if(ownerRepository.findByMail(owner.getMail()).isPresent()){
+            throw new MailAlreadyExistsException();
+        }
+        owner.setPassword(passwordEncoder.encode(owner.getPassword()));
+        ownerRepository.save(ownerEntityMapper.toEntityEmployee(owner));
+    }
+
+
+    @Override
     public Owner getOwner(Long id) {
         Optional<OwnerEntity> ownerEntity = ownerRepository.findById(id);
+        if (!ownerEntity.isPresent()) {
+            throw new NullPointerException();
+        }
         return ownerEntityMapper.toOwner(ownerEntity.get());
     }
 

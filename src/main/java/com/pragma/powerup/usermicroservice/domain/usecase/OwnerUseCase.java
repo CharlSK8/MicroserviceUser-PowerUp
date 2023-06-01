@@ -1,6 +1,7 @@
 package com.pragma.powerup.usermicroservice.domain.usecase;
 
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.OwnerEntity;
+import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.EmployeeRequestDto;
 import com.pragma.powerup.usermicroservice.domain.api.IOwnerServicePort;
 import com.pragma.powerup.usermicroservice.domain.exceptions.MinorException;
 import com.pragma.powerup.usermicroservice.domain.model.Owner;
@@ -38,6 +39,11 @@ public class OwnerUseCase implements IOwnerServicePort {
         }
 
     @Override
+    public void saveEmployee(Owner owner) {
+        ownerPersistencePort.saveEmployee(owner);
+    }
+
+    @Override
     public Owner getOwner(Long id) {
         return ownerPersistencePort.getOwner(id);
     }
@@ -51,4 +57,5 @@ public class OwnerUseCase implements IOwnerServicePort {
     public boolean comparePasswords(CharSequence passwordDto, String passwordEntity) {
         return passwordEncoder.matches(passwordDto, passwordEntity);
     }
+
 }
