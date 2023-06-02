@@ -1,5 +1,6 @@
 package com.pragma.powerup.usermicroservice.adapters.driving.http.mapper;
 
+import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.CustomerRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.EmployeeRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.OwnerRequestDto;
 import com.pragma.powerup.usermicroservice.domain.model.Owner;
@@ -15,7 +16,5 @@ public interface IOwnerRequestMapper {
     @Mapping(target = "role.id", source = "idRole")
     Owner toOwner(OwnerRequestDto ownerRequestDto);
     Owner toOwnerEmployee(EmployeeRequestDto employeeRequestDto);
-
-
-
+    Owner toOwnerCustomer(CustomerRequestDto customerRequestDto);
 }

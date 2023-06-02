@@ -11,6 +11,7 @@ public interface IOwnerServicePort {
 
     void saveOwner(Owner owner);
     void saveEmployee(Owner owner);
+    void saveCustomer(Owner owner);
     Owner getOwner(Long id);
     Optional<OwnerEntity> findByMail(String mail);
     boolean comparePasswords(CharSequence passwordDto, String passwordEntity);

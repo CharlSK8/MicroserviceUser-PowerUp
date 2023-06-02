@@ -110,7 +110,7 @@ public class ControllerAdvisor {
     public ResponseEntity<Map<String, String>> handleMailNotFoundException(
             MailNotFoundException mailNotFoundException) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, EMAIL_NOT_FOUND_MESSAGE));
+                .body(Collections.singletonMap(RESPONSE_WARNING_MESSAGE_KEY, EMAIL_NOT_FOUND_MESSAGE));
     }
 
     @ExceptionHandler(PasswordNotFoundException.class)

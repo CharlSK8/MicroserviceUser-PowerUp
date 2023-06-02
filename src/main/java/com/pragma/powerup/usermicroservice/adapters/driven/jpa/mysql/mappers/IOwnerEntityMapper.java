@@ -1,5 +1,6 @@
 package com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.mappers;
 
+import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.CustomerEntity;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.EmployeeEntity;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.OwnerEntity;
 import com.pragma.powerup.usermicroservice.domain.model.Owner;
@@ -16,4 +17,5 @@ public interface IOwnerEntityMapper {
     @Mapping(target = "role.id", source = "roleEntity.id")
     Owner toOwner(OwnerEntity ownerEntity);
     EmployeeEntity toEntityEmployee(Owner owner);
+    CustomerEntity toEntityCustomer(Owner owner);
 }

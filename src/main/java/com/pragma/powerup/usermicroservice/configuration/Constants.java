@@ -16,6 +16,7 @@ public class Constants {
     public static final String USER_CREATED_MESSAGE = "User created successfully";
     public static final String OWNER_CREATED_MESSAGE = "Owner created successfully";
     public static final String EMPLOYEE_CREATED_MESSAGE = "Employee created successfully";
+    public static final String CUSTOMER_CREATED_MESSAGE = "Customer created successfully";
     public static final String USER_DELETED_MESSAGE = "User deleted successfully";
     public static final String RESPONSE_ERROR_MESSAGE_KEY = "error: ";
     public static final String RESPONSE_WARNING_MESSAGE_KEY = "warning: ";

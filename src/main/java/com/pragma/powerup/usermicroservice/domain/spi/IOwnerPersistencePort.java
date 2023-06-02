@@ -9,6 +9,7 @@ public interface IOwnerPersistencePort {
 
     void saveOwner(Owner owner);
     void saveEmployee(Owner owner);
+    void saveCustomer(Owner owner);
     Owner getOwner(Long id);
     Optional<OwnerEntity> findByMail(String mail);
 

@@ -44,6 +44,17 @@ public class OwnerMysqlAdapter implements IOwnerPersistencePort {
         ownerRepository.save(ownerEntityMapper.toEntityEmployee(owner));
     }
 
+    @Override
+    public void saveCustomer(Owner owner) {
+        if(ownerRepository.findByDniNumber(owner.getDniNumber().toString()).isPresent()){
+            throw new DniAlreadyExistsException();
+        }
+        if(ownerRepository.findByMail(owner.getMail()).isPresent()){
+            throw new MailAlreadyExistsException();
+        }
+        owner.setPassword(passwordEncoder.encode(owner.getPassword()));
+        ownerRepository.save(ownerEntityMapper.toEntityCustomer(owner));
+    }
 
     @Override
     public Owner getOwner(Long id) {
