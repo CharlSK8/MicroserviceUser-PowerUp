@@ -4,6 +4,7 @@ import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.entity.Owne
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.DniAlreadyExistsException;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.MailAlreadyExistsException;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.OwnerAlreadyExistsException;
+import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.OwnerNotFoundException;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.mappers.IOwnerEntityMapper;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IOwnerRepository;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.EmployeeRequestDto;
@@ -60,9 +61,17 @@ public class OwnerMysqlAdapter implements IOwnerPersistencePort {
     public Owner getOwner(Long id) {
         Optional<OwnerEntity> ownerEntity = ownerRepository.findById(id);
         if (!ownerEntity.isPresent()) {
-            throw new NullPointerException();
+            throw new OwnerNotFoundException();
         }
         return ownerEntityMapper.toOwner(ownerEntity.get());
+    }
+    @Override
+    public Owner getOwnerByDni(String dniNumber) {
+        Optional<OwnerEntity> ownerEntity = ownerRepository.findByDniNumber(dniNumber);
+        if (!ownerEntity.isPresent()) {
+            throw new OwnerNotFoundException();
+        }
+        return ownerEntityMapper.toOwner(ownerEntity.get()) ;
     }
 
     @Override

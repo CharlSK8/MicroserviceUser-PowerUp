@@ -11,6 +11,7 @@ public interface IOwnerPersistencePort {
     void saveEmployee(Owner owner);
     void saveCustomer(Owner owner);
     Owner getOwner(Long id);
+    Owner getOwnerByDni(String dniNumber);
     Optional<OwnerEntity> findByMail(String mail);
 
 }

@@ -1,5 +1,6 @@
 package com.pragma.powerup.usermicroservice.adapters.driving.http.controller;
 
+import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.OwnerDniRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.OwnerRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.OwnerResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IOwnerHandler;
@@ -48,6 +49,18 @@ public class OwnerRestController {
     @GetMapping("/{id}")
     public ResponseEntity<OwnerResponseDto> getOwner(@PathVariable Long id) {
         return ResponseEntity.ok(ownerHandler.getOwner(id));
+    }
+
+    @Operation(summary = "Get a owner by email",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Owner returned",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = OwnerResponseDto.class))),
+                    @ApiResponse(responseCode = "404", description = "User not found with employee role",
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))})
+    @GetMapping("/search")
+    public ResponseEntity<OwnerResponseDto> getOwnerByDni(@Valid @RequestBody OwnerDniRequestDto ownerDniRequestDto) {
+        System.out.println(ownerDniRequestDto.getDniNumber());
+        return ResponseEntity.ok(ownerHandler.getOwnerByDni(ownerDniRequestDto));
     }
 
 }

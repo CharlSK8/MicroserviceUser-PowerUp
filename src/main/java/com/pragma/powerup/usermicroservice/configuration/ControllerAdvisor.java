@@ -131,4 +131,11 @@ public class ControllerAdvisor {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(RESPONSE_WARNING_MESSAGE_KEY, DNI_ALREADY_EXISTS_MESSAGE));
     }
+
+    @ExceptionHandler(OwnerNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleOwnerNotFoundException(
+            OwnerNotFoundException ownerNotFoundException) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, OWNER_NOT_FOUND_MESSAGE));
+    }
 }

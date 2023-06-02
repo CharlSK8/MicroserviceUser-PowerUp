@@ -2,6 +2,7 @@ package com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.impl;
 
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.CustomerRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.EmployeeRequestDto;
+import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.OwnerDniRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.request.OwnerRequestDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.dto.response.OwnerResponseDto;
 import com.pragma.powerup.usermicroservice.adapters.driving.http.handlers.IOwnerHandler;
@@ -28,6 +29,12 @@ public class OwnerHandleImpl implements IOwnerHandler {
     public OwnerResponseDto getOwner(Long id) {
         return ownerResponseMapper.toOwnerResponseDto(ownerServicePort.getOwner(id));
     }
+
+    @Override
+    public OwnerResponseDto getOwnerByDni(OwnerDniRequestDto ownerDniRequestDto) {
+        return ownerResponseMapper.toOwnerResponseDto(ownerServicePort.getOwnerByDni(ownerDniRequestDto.getDniNumber()));
+    }
+
 
     @Override
     public void saveEmployee(EmployeeRequestDto employeeRequestDto) {

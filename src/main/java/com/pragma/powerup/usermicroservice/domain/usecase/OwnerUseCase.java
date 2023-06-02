@@ -54,6 +54,11 @@ public class OwnerUseCase implements IOwnerServicePort {
     }
 
     @Override
+    public Owner getOwnerByDni(String dniNumber) {
+        return ownerPersistencePort.getOwnerByDni(dniNumber);
+    }
+
+    @Override
     public Optional<OwnerEntity> findByMail(String mail) {
         return ownerPersistencePort.findByMail(mail);
     }

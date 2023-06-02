@@ -37,7 +37,6 @@ public class Constants {
     public static final String SWAGGER_LICENSE_NAME_MESSAGE = "Apache 2.0";
     public static final String SWAGGER_LICENSE_URL_MESSAGE = "http://springdoc.org";
     public static final String SWAGGER_TERMS_OF_SERVICE_MESSAGE = "http://swagger.io/terms/";
-    public static final String DATA_NULL_OR_EMPTY = "The data entered cannot be empty or null";
     public static final String PHONE_LENGTH = "The phone must be min 10 and max 13";
     public static final String ENTERED_NULL_OR_EMPTY = "The entered field cannot be empty or null";
     public static final String EMAIL_VALIDATION = "Must be a properly formatted email address";
@@ -47,4 +46,5 @@ public class Constants {
     public static final String PASSWORD_NOT_FOUND_MESSAGE = "Password not found in the database";
     public static final String ROLE_INVALID_MESSAGE = "Access denied, invalid role for this endpoint";
     public static final String DNI_ALREADY_EXISTS_MESSAGE = "A person already exists with the DNI number provided";
+    public static final String OWNER_NOT_FOUND_MESSAGE = "Owner not found in the database.";
 }

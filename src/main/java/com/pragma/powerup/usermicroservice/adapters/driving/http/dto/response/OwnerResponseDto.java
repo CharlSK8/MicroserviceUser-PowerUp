@@ -15,7 +15,7 @@ public class OwnerResponseDto {
     private String dniNumber;
     private String phone;
     private LocalDate birthOfDate;
-    private String email;
+    private String mail;
     private String password;
     private Role role;
 
